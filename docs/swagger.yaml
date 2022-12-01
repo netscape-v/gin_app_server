@@ -1,0 +1,131 @@
+definitions:
+  models.User:
+    properties:
+      mid:
+        description: 消息id
+        type: string
+      name:
+        description: 名称
+        type: string
+      portrait:
+        description: 头像地址
+        type: string
+      pswd:
+        description: 密码
+        type: string
+      stateMsg:
+        description: 线上状态消息
+        type: string
+    type: object
+info:
+  contact: {}
+paths:
+  /add:
+    post:
+      consumes:
+      - multipart/form-data
+      description: 行内以下描述
+      parameters:
+      - description: 名称
+        in: formData
+        name: name
+        required: true
+        type: string
+      - description: 密码
+        in: formData
+        name: pswd
+        required: true
+        type: string
+      produces:
+      - multipart/form-data
+      responses: {}
+      summary: 添加用户
+      tags:
+      - 用户相关
+  /del/{name}:
+    delete:
+      consumes:
+      - application/json
+      description: 行内以下描述
+      parameters:
+      - description: 提交的参数
+        in: path
+        name: name
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses: {}
+      summary: 删除用户
+      tags:
+      - 用户相关
+  /find/{name}:
+    get:
+      consumes:
+      - application/json
+      description: 根据name查询用户信息
+      parameters:
+      - description: 要查询的名字
+        in: path
+        name: name
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses: {}
+      summary: 查询用户
+      tags:
+      - 用户相关
+  /regis:
+    post:
+      consumes:
+      - application/json
+      description: 行内以下描述
+      parameters:
+      - description: 提交的参数
+        in: body
+        name: user
+        required: true
+        schema:
+          $ref: '#/definitions/models.User'
+      produces:
+      - application/json
+      responses: {}
+      summary: 用户注册
+      tags:
+      - 用户相关
+  /test:
+    get:
+      consumes:
+      - application/json
+      description: 行内以下描述
+      produces:
+      - application/json
+      responses: {}
+      summary: 测试
+      tags:
+      - 测试
+  /upd/{name}:
+    patch:
+      consumes:
+      - application/json
+      description: 根据name更新用户信息
+      parameters:
+      - description: 被更改的名字
+        in: path
+        name: name
+        required: true
+        type: string
+      - description: 更改的参数
+        in: body
+        name: user
+        required: true
+        schema:
+          $ref: '#/definitions/models.User'
+      produces:
+      - application/json
+      responses: {}
+      summary: 更新用户
+      tags:
+      - 用户相关
+swagger: "2.0"
